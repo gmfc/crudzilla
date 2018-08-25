@@ -1,0 +1,172 @@
+{{msg}} {{#if entity}}
+<form action="/crud/d/{{entityName}}/{{entity._id}}" method="post">
+  <button type="submit">Deletar</button>
+</form>
+
+<form action="/crud/u/{{entityName}}/{{entity._id}}" method="post">
+  {{else}}
+  <form action="/crud/c/{{entityName}}" method="post">
+    {{/if}}
+    {{> mLangText attName="title" name="Título" value=entity.title required="required"}}
+    {{> mLangText attName="description" name="Descrição" value=entity.description}}
+
+
+    <label>Categoria</label>
+    <select name="category">
+      <option disabled selected>Selecionar</option>
+      {{#each refData.SessionCategory}}
+      <option value="{{this._id}}" {{#equals ../entity.category._id this._id}}selected{{/equals}}>{{this.name.[0]}}</option>
+      {{/each}}
+    </select>
+
+    <label>Local</label>
+    <select name="local">
+      <option disabled selected>Selecionar</option>
+      {{#each refData.Local}}
+      <option value="{{this._id}}" {{#equals ../entity.local._id this._id}}selected{{/equals}}>{{this.name.[0]}}</option>
+      {{/each}}
+    </select>
+    {{> mLangText attName="localDetail" name="Detalhes do Local" value=entity.localDetail}}
+    {{> dateIn attName="dateStart" name="Data de inicio" value=entity.dateStart required="required"}}
+    {{> timeIn attName="timeStart" name="Horario de inicio" value=entity.timeStart}}
+    {{> dateIn attName="dateFinish" name="Data de termino" value=entity.dateFinish required="required"}}
+    {{> timeIn attName="timeFinish" name="Horario de termino" value=entity.timeFinish}}
+
+    <label>Evento</label>
+    <select name="event" required>
+      <option disabled selected>Selecionar</option>
+      {{#each refData.Event}}
+      <option value="{{this._id}}" {{#equals ../entity.event._id this._id}}selected{{/equals}}>{{this.initials}}</option>
+      {{/each}}
+    </select>
+
+
+
+    <grid>
+      <div col="1/2">
+        <!-- LISTAGEM de hosts -->
+        <label>Host</label>
+        <grid>
+
+          {{#if entity}} {{#each entity.hosts}}
+
+          <div col="1/1" class="del_{{this.role._id}}-{{this.host._id}}">
+            <select name="hostsList">
+              <option value="{{this.host._id}}" selected>{{this.host.name}}</option>
+            </select>
+          </div>
+
+          {{/each}}{{/if}}
+        </grid>
+
+
+        <div id="hostList">
+          <select name="hostsList" id="origHostSelect">
+            <option disabled selected>Selecionar novo Host</option>
+            {{#each refData.Host}}
+            <option value="{{this._id}}">{{this.title}} {{this.name}} {{#if this.afiliation}}({{this.afiliation.initials}}){{/if}}</option>
+            {{/each}}
+          </select>
+          <!-- add ficava aqui -->
+        </div>
+        <!-- /LISTAGEM de hosts -->
+      </div>
+
+
+      <div col="1/2">
+        <!-- LISTAGEM de hosts -->
+        <label>Papel</label>
+        <grid>
+          {{#if entity}} {{#each entity.hosts}}
+
+
+          <div col="5/6" class="del_{{this.role._id}}-{{this.host._id}}">
+            <select name="rolesList">
+              <option value="{{this.role._id}}" selected>{{this.role.name.[0]}}</option>
+            </select>
+          </div>
+          <div class="del_{{this.role._id}}-{{this.host._id}}" col="1/6">
+            <a btn onclick="delRole('del_{{this.role._id}}-{{this.host._id}}')">X</a>
+          </div>
+
+
+          {{/each}}{{/if}}
+
+        </grid>
+
+        <div id="roleList">
+          <select name="rolesList" id="origRoleSelect">
+            <option disabled selected>Selecionar Papel</option>
+            {{#each refData.Role}}
+            <option value="{{this._id}}">{{this.name.[0]}}</option>
+            {{/each}}
+          </select>
+          <!-- add ficava aqui -->
+        </div>
+        <!-- /LISTAGEM de hosts -->
+      </div>
+
+
+      <div col="1/1">
+        <a btn full onclick="addRole()"> Adicionar Novo Host</a>
+      </div>
+    </grid>
+
+
+
+    <!-- LISTAGEM de trabalhos -->
+    <label>Trabalhos adicionados</label>
+    {{#if entity}} {{#each entity.works}}
+    <div id="del_{{this._id}}">
+      <grid>
+        <div col="5/6">
+          <select name="works">
+            <option value="{{this._id}}" selected>{{this.title}}</option>
+          </select>
+        </div>
+        <div col="1/6">
+          <a btn onclick="delWork('del_{{this._id}}')">X</a>
+        </div>
+      </grid>
+    </div>
+    {{/each}}{{/if}}
+    <label>Adicionar Trabalhos</label>
+    <div id="workList">
+      <grid>
+        <div col="1/1">
+          <select name="works" id="origWorkSelect">
+            <option disabled selected>Selecionar</option>
+            {{#each refData.Work}}
+            <option value="{{this._id}}" {{#equals ../entity.works._id this._id}}selected{{/equals}}>{{this.title}}</option>
+            {{/each}}
+          </select>
+        </div>
+        <div col="1/1">
+          <a btn full onclick="addWork()">Adicionar Trabalho</a>
+        </div>
+      </grid>
+    </div>
+    <!-- /LISTAGEM de trabalhos -->
+
+    <hr>
+    <button btn primary full type="submit">Enviar</button>
+  </form>
+  <script>
+
+    function addRole() {
+      $('#origRoleSelect').clone().appendTo('#roleList')
+      $('#origHostSelect').clone().appendTo('#hostList')
+    }
+
+    function addWork() {
+      $('#origWorkSelect').clone().prependTo('#workList')
+    }
+
+    function delRole(c) {
+      $('.' + c).remove()
+    }
+
+    function delWork(idd) {
+      $('#' + idd).remove()
+    }
+  </script>

@@ -1,0 +1,16 @@
+<h1>Conferências</h1>
+<a btn href="/crud/c/{{entityName}}">Cadastrar Conferência</a>
+<table>
+  <thead>
+    <tr><th>Iniciais</th><th>Título</th><th></th></tr>
+  </thead>
+  <tbody>
+    {{#each list}}
+    <tr>
+      <td>{{this.initials}}</td>
+      <td>{{this.title.[0]}}</td>
+      <td><a btn href="/crud/r/{{../entityName}}/{{this._id}}">-></a></td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

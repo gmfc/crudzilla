@@ -1,0 +1,15 @@
+<h1>Trabalhos</h1>
+<a btn href="/crud/c/{{entityName}}">Cadastrar Trabalho</a>
+<table>
+  <thead>
+    <tr><th>Título</th><th></th></tr>
+  </thead>
+  <tbody>
+    {{#each list}}
+    <tr>
+      <td>{{this.title}}</td>
+      <td><a btn href="/crud/r/{{../entityName}}/{{this._id}}">-></a></td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

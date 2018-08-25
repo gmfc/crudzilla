@@ -1,0 +1,15 @@
+<h1>Hoteis</h1>
+<a btn href="/crud/c/{{entityName}}">Cadastrar Hotel</a>
+<table>
+  <thead>
+    <tr><th>Nome</th><th></th></tr>
+  </thead>
+  <tbody>
+    {{#each list}}
+    <tr>
+      <td>{{this.name}}</td>
+      <td><a btn href="/crud/r/{{../entityName}}/{{this._id}}">-></a></td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

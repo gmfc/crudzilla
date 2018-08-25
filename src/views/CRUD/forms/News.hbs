@@ -1,0 +1,26 @@
+{{msg}}
+
+{{#if entity}}
+<form action="/crud/d/{{entityName}}/{{entity._id}}" method="post">
+  <button type="submit">Deletar</button>
+</form>
+
+<form action="/crud/u/{{entityName}}/{{entity._id}}" method="post">
+{{else}}
+<form action="/crud/c/{{entityName}}" method="post">
+{{/if}}
+
+
+{{> mLangText attName="title" name="Titulo" value=entity.title}}
+{{> mLangText attName="message" name="Mensagem" value=entity.message}}
+
+<label>Conferencia Relacionada</label>
+<select name="conference">
+    <option disabled selected>Selecionar</option>
+  {{#each refData.Conference}}
+    <option value="{{this._id}}" {{#equals ../entity.conference._id this._id}}selected{{/equals}}>{{this.initials}}</option>
+  {{/each}}
+</select>
+
+<button type="submit">Enviar</button>
+</form>

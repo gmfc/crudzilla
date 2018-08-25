@@ -1,0 +1,66 @@
+<nav fx>
+  <!-- this label allows the checkbox to be activated by clicking anywhere in the nav -->
+  <label>
+    <!-- checkbox required for responsiven menu -->
+    <input type="checkbox">
+
+    <!-- bareCSS will use the header to contain the hamburger menu -->
+    <header>
+      <!-- you can leave this empty if you don't want a title -->
+      <a href="/">Home</a>
+    </header>
+
+    <!-- the main navigation items are anchor links within an unordered list -->
+    <ul>
+      {{#if sess.logged}}
+      <li>
+        <a>Listas</a>
+        <menu>
+          <menuitem>
+          <a href="/crud/l/Afiliation">Afiliation</a>
+          </menuitem>
+          <menuitem>
+          <a href="/crud/l/Conference">Conference</a>
+          </menuitem>
+          <menuitem>
+          <a href="/crud/l/Event">Event</a>
+          </menuitem>
+          <menuitem>
+          <a href="/crud/l/Host">Host</a>
+          </menuitem>
+          <menuitem>
+          <a href="/crud/l/Hotel">Hotel</a>
+          </menuitem>
+          <menuitem>
+          <a href="/crud/l/Local">Local</a>
+          </menuitem>
+          <menuitem>
+          <a href="/crud/l/LocalCategory">LocalCategory</a>
+          </menuitem>
+          <menuitem>
+          <a href="/crud/l/News">News</a>
+          </menuitem>
+          <menuitem>
+          <a href="/crud/l/Role">Role</a>
+          </menuitem>
+          <menuitem>
+          <a href="/crud/l/Session">Session</a>
+          </menuitem>
+          <menuitem>
+          <a href="/crud/l/SessionCategory">SessionCategory</a>
+          </menuitem>
+          <menuitem>
+          <a href="/crud/l/Work">Work</a>
+          </menuitem>
+          <menuitem>
+          <a href="/crud/l/WorkCategory">WorkCategory</a>
+          </menuitem>
+        </menu>
+      </li>
+      <li>
+        <a href="/logout">Sair</a>
+      </li>
+      {{/if}}
+    </ul>
+  </label>
+</nav>

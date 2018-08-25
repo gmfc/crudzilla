@@ -1,0 +1,22 @@
+<h1>Sessões</h1>
+<a btn href="/crud/c/{{entityName}}">Criar Sessão</a>
+<table>
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Evento</th>
+      <th>Conferencia</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each list}}
+    <tr>
+      <td>{{this.title.[0]}}</td>
+      <td>{{this.event.title.[0]}}</td>
+      <td>{{this.event.conference.title.[0]}}</td>
+      <td><a btn href="/crud/r/{{../entityName}}/{{this._id}}">-></a></td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

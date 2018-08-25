@@ -1,0 +1,29 @@
+{{msg}}
+
+{{#if entity}}
+<form action="/crud/d/{{entityName}}/{{entity._id}}" method="post">
+  <button type="submit">Deletar</button>
+</form>
+
+<form action="/crud/u/{{entityName}}/{{entity._id}}" method="post">
+{{else}}
+<form action="/crud/c/{{entityName}}" method="post">
+{{/if}}
+
+{{> textIn attName="name" name="Nome" value=entity.name required="required"}}
+
+{{> mLangText attName="description" name="Descrição" value=entity.description}}
+
+{{> textIn attName="distance" name="Distancia (m)" value=entity.distance}}
+
+{{> textIn attName="individual" name="Valor individual" value=entity.individual}}
+
+{{> textIn attName="duplo" name="Valor duplo" value=entity.duplo}}
+
+{{> textIn attName="triplo" name="Valor triplo" value=entity.triplo}}
+
+{{> textIn attName="quadruplo" name="Valor quadruplo" value=entity.quadruplo}}
+
+<button type="submit">Enviar</button>
+
+</form>

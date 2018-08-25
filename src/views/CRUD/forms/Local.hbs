@@ -1,0 +1,37 @@
+{{msg}}
+
+{{#if entity}}
+<form action="/crud/d/{{entityName}}/{{entity._id}}" method="post">
+  <button type="submit">Deletar</button>
+</form>
+
+<form action="/crud/u/{{entityName}}/{{entity._id}}" method="post">
+{{else}}
+<form action="/crud/c/{{entityName}}" method="post">
+{{/if}}
+
+{{> mLangText attName="name" name="Nome" value=entity.name required="required"}}
+
+{{> textIn attName="addres" name="Endereço" value=entity.addres}}
+
+{{> textIn attName="number" name="Número" value=entity.number}}
+
+{{> numIn attName="lat" name="Latitude" value=entity.lat required="required"}}
+{{> numIn attName="long" name="Longitude" value=entity.long required="required"}}
+
+<hr>
+
+{{> mLangText attName="description" name="Descrição" value=entity.description}}
+
+<hr>
+
+<label>Categoria</label>
+<select name="category">
+    <option disabled selected>Selecionar</option>
+  {{#each refData.LocalCategory}}
+    <option value="{{this._id}}" {{#equals ../entity.category._id this._id}}selected{{/equals}}>{{name.[0]}}</option>
+  {{/each}}
+</select>
+
+<button type="submit">Enviar</button>
+</form>

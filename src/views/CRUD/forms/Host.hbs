@@ -1,0 +1,48 @@
+{{msg}}
+
+{{#if entity}}
+<form action="/crud/d/{{entityName}}/{{entity._id}}" method="post">
+  <button type="submit">Deletar</button>
+</form>
+
+<form action="/crud/u/{{entityName}}/{{entity._id}}" method="post">
+{{else}}
+<form action="/crud/c/{{entityName}}" method="post">
+{{/if}}
+
+{{> textIn attName="name" name="Nome" value=entity.name required="required"}}
+
+<h5 id="warnning" style="display:none;">Nome "<span id="wname" style="color:red;"></span>" já cadastrado. Deseja cadastrar mesmo assim?</h5>
+
+{{> textIn attName="title" name="Titulo" value=entity.title}}
+
+{{> mLangText attName="bio" name="Mini Biografia" value=entity.bio}}
+
+{{> textIn attName="email" name="Email" value=entity.email}}
+
+<label>Afiliação</label>
+<select name="afiliation">
+    <option disabled selected>Selecionar</option>
+  {{#each refData.Afiliation}}
+    <option value="{{this._id}}" {{#equals ../entity.afiliation._id this._id}}selected{{/equals}}>{{this.initials}}</option>
+  {{/each}}
+</select>
+
+<button type="submit">Enviar</button>
+</form>
+
+<script>
+  $(document).ready(function() {
+    $.getJSON('/api/Host', function( data ) {
+      $('#name').keyup(function() {
+        data.forEach(function(host) {
+          if(host.name === $('#name').val()) {
+            $('#wname').text($('#name').val())
+            $('#warnning').show()
+          }
+        })
+      })
+    })
+  })
+
+</script>

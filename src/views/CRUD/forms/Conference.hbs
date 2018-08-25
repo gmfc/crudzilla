@@ -1,0 +1,30 @@
+{{msg}}
+
+{{#if entity}}
+<form action="/crud/d/{{entityName}}/{{entity._id}}" method="post">
+  <button type="submit">Deletar</button>
+</form>
+
+<form action="/crud/u/{{entityName}}/{{entity._id}}" method="post">
+{{else}}
+<form action="/crud/c/{{entityName}}" method="post">
+{{/if}}
+
+{{> mLangText attName="title" name="Titulo" value=entity.title required="required"}}
+{{> textIn attName="initials" name="Iniciais" value=entity.initials required="required"}}
+{{> dateIn attName="start" name="Inicio" value=entity.start}}
+{{> dateIn attName="finish" name="Fim" value=entity.finish}}
+
+{{> mLangText attName="description" name="Descrição" value=entity.description}}
+
+
+<label>Local</label>
+<select name="local">
+    <option disabled selected>Selecionar</option>
+  {{#each refData.Local}}
+    <option value="{{this._id}}" {{#equals ../entity.local._id this._id}}selected{{/equals}}>{{this.name.[0]}}</option>
+  {{/each}}
+</select>
+
+<button type="submit">Enviar</button>
+</form>

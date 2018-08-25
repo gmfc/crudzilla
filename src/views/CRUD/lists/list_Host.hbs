@@ -1,0 +1,16 @@
+<h1>Lista de Pessoas</h1>
+<a btn href="/crud/c/{{entityName}}">Cadastrar Pessoa</a>
+<table>
+  <thead>
+    <tr><th>Nome</th><th>Afiliação</th><th></th></tr>
+  </thead>
+  <tbody>
+    {{#each list}}
+    <tr>
+      <td>{{this.title}} {{this.name}}</td>
+      <td>{{this.afiliation.name.[0]}}</td>
+      <td><a btn href="/crud/r/{{../entityName}}/{{this._id}}">-></a></td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

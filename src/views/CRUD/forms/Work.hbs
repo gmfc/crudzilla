@@ -1,0 +1,61 @@
+{{msg}} {{#if entity}}
+<form action="/crud/d/{{entityName}}/{{entity._id}}" method="post">
+  <button type="submit">Deletar</button>
+</form>
+
+<form action="/crud/u/{{entityName}}/{{entity._id}}" method="post">
+  {{else}}
+  <form action="/crud/c/{{entityName}}" method="post">
+    {{/if}} {{> textIn attName="title" name="Titulo" value=entity.title required="required"}} {{> textIn attName="abstract" name="Abstract"
+    value=entity.abstract}}
+
+    <!-- LISTAGEM -->
+    <label>Autores</label>
+    {{#if entity}} {{#each entity.hosts}}
+    <div id="del_{{this._id}}">
+      <grid>
+        <div col="5/6">
+          <select name="hosts">
+            <option value="{{this._id}}" selected>{{this.title}} {{this.name}} {{this.afiliation.name.[0]}}</option>
+          </select>
+        </div>
+        <div col="1/6">
+          <a btn onclick="del('del_{{this._id}}')">X</a>
+        </div>
+      </grid>
+    </div>
+    {{/each}} {{/if}}
+    <label>Adicionar Autores</label>
+    <div id="addList">
+      <select name="hosts" id="origSelect">
+        <option disabled selected>Selecionar</option>
+        {{#each refData.Host}}
+        <option value="{{this._id}}" {{#equals ../entity.hosts._id this._id}}selected{{/equals}}>{{this.title}} {{this.name}} {{#if this.afiliation}}({{this.afiliation.initials}}){{/if}}</option>
+        {{/each}}
+      </select>
+      <a btn onclick="add()">Adicionar Mais um Autor</a>
+    </div>
+    <!-- LISTAGEM -->
+
+    <hr>
+
+    <label>Categoria</label>
+    <select name="category">
+      <option disabled selected>Selecionar</option>
+      {{#each refData.WorkCategory}}
+      <option value="{{this._id}}" {{#equals ../entity.category._id this._id}}selected{{/equals}}>{{name.[0]}}</option>
+      {{/each}}
+    </select>
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <script>
+    function add() {
+      $('#origSelect').clone().prependTo('#addList')
+    }
+
+    function del(id) {
+      $('#' + id).remove()
+    }
+  </script>

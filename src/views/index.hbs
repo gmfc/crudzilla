@@ -1,0 +1,170 @@
+<!--
+<a btn href="/crud/l/Afiliation">Afiliation</a>
+<a btn href="/crud/l/Role">Role</a>
+<a btn href="/crud/l/LocalCategory">LocalCategory</a>
+<a btn href="/crud/l/SessionCategory">SessionCategory</a>
+
+<a btn href="/crud/l/Host">Host</a>
+<a btn href="/crud/l/Local">Local</a>
+
+<a btn href="/crud/l/Work">Work</a>
+<a btn href="/crud/l/Conference">Conference</a>
+
+<a btn href="/crud/l/Event">Event</a>
+
+<a btn href="/crud/l/Session">Session</a>
+
+<a btn href="/crud/l/News">News</a>
+-->
+
+<grid>
+  <div col="1/2">
+    <card>
+      <h5>Afiliação (Afiliation)</h5>
+      <hr>
+      <b>Sem Relações</b>
+      <hr>
+      <p>Entidade a qual Pessoas se afiliam (Universidades, Empresas etc)</p>
+      <a btn primary href="/crud/l/Afiliation">Lista de Afiliação</a>
+    </card>
+  </div>
+  <div col="1/2">
+    <card>
+      <h5>Papeis (Role)</h5>
+      <hr>
+      <b>Sem Relações</b>
+      <hr>
+      <p>Papeis assumidos por pessoas participantes de Sessões (Palestrante, Expositor etc)</p>
+      <a btn primary href="/crud/l/Role">Lista de Papeis</a>
+    </card>
+  </div>
+  <div col="1/3">
+    <card>
+      <h5>Categorias de Locais (LocalCategory)</h5>
+      <hr>
+      <b>Sem Relações</b>
+      <hr>
+      <p>Tipos de locais (Hotel, Sala de Aula, Quadra etc)</p>
+      <a btn primary href="/crud/l/LocalCategory">Lista de C. Locais</a>
+    </card>
+  </div>
+  <div col="1/3">
+    <card>
+      <h5>Categorias de Trabalhos (WorkCategory)</h5>
+      <hr>
+      <b>Sem Relações</b>
+      <hr>
+      <p>Tipos de trabalhos (Papers, Artigos, Programas etc)</p>
+      <a btn primary href="/crud/l/WorkCategory">Lista de C. Trabalhos</a>
+    </card>
+  </div>
+    <div col="1/3">
+    <card>
+      <h5>Categorias de Sessões (SessionCategory)</h5>
+      <hr>
+      <b>Sem Relações</b>
+      <hr>
+      <p>Tipos de sessões (Palestra, Workshop, Hackaton etc)</p>
+      <a btn primary href="/crud/l/SessionCategory">Lista de C. Sessões</a>
+    </card>
+  </div>
+  <hr>
+  <div col="1/2">
+    <card>
+      <h5>Pessoa (Host)</h5>
+      <hr>
+      <b>Relações:</b>
+      <tag class="dep">Afiliation</tag>
+      <hr>
+      <p>Indivíduo, seja ele um autor de um trabalho ou palestrante/host em alguma sessão</p>
+      <a btn primary href="/crud/l/Host">Lista de Pessoas</a>
+    </card>
+  </div>
+  <div col="1/2">
+    <card>
+      <h5>Local (Local)</h5>
+      <hr>
+      <b>Relações:</b>
+      <tag class="dep">LocalCategory</tag>
+      <hr>
+      <p>Um ponto de interesse geográfico, com um indereço e/ou coordenadas GPS, não incluindo salas e locais inseridos em lugares
+        maiores (Prédios, Quadras, Hoteis etc)</p>
+      <a btn primary href="/crud/l/Local">Lista de Locais</a>
+    </card>
+  </div>
+  <hr>
+  <div col="1/2">
+    <card>
+      <h5>Trabalhos (Work)</h5>
+      <hr>
+      <b>Relações:</b>
+      <tag class="dep">Host</tag>
+      <tag class="dep">WorkCategory</tag>
+      <hr>
+      <p>Trabalhos acadêmicos (Pappers, artigos etc)</p>
+      <a btn primary href="/crud/l/Work">Lista de Trabalhos</a>
+    </card>
+  </div>
+  <div col="1/2">
+    <card>
+      <h5>Conferencia (Conference)</h5>
+      <hr>
+      <b>Relações:</b>
+      <tag class="dep">Local</tag>
+      <hr>
+      <p>Uma conferencia, evento maior englobando um ou mais eventos menores (CSBC, LACLO etc)</p>
+      <a btn primary href="/crud/l/Conference">Lista de Conferencias</a>
+    </card>
+  </div>
+  <hr>
+  <div col="1/1">
+    <card>
+      <h5>Evento (Event)</h5>
+      <hr>
+      <b>Relações:</b>
+      <tag class="dep">Conference</tag>
+      <hr>
+      <p>Um evento menor, parte de uma conferencia (WIT, EduTech etc)</p>
+      <a btn primary href="/crud/l/Event">Lista de Eventos</a>
+    </card>
+  </div>
+  <hr>
+  <div col="1/1">
+    <card>
+      <h5>Sessão (Session)</h5>
+      <hr>
+      <b>Relações:</b>
+      <tag class="dep">Event</tag>
+      <tag class="dep">Local</tag>
+      <tag class="dep">Host</tag>
+      <tag class="dep">Role</tag>
+      <tag class="dep">SessionCategory</tag>
+      <tag class="dep">Work</tag>
+      <hr>
+      <p>Uma atração/acontecimento pertencente a um evento (Palestras, Apresentações, jantares etc)</p>
+      <a btn primary href="/crud/l/Session">Lista de Sessões</a>
+    </card>
+  </div>
+  <hr>
+  <div col="1/1">
+    <card>
+      <h5>Noticias (News)</h5>
+      <hr>
+      <b>Relações:</b>
+      <tag class="dep">Conference</tag>
+      <hr>
+      <p>Noticias gerais ou relacionadas a uma conferencia</p>
+      <a btn primary href="/crud/l/News">Lista de Noticias</a>
+    </card>
+  </div>
+    <div col="1/1">
+    <card>
+      <h5>Hotel</h5>
+      <hr>
+      <b>Relações:</b>
+      <hr>
+      <p>Hoteis</p>
+      <a btn primary href="/crud/l/Hotel">Lista de Hoteis</a>
+    </card>
+  </div>
+</grid>
