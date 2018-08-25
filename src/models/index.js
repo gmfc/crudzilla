@@ -15,7 +15,6 @@ import './WorkCategory'
 import './Work'
 import './User'
 // 32772
-// mongoose.connect('mongodb://dev:devdev1@ds121331.mlab.com:21331/eguide')
 mongoose.connect('mongodb://192.168.0.13:32783/eguide')
 
 const db = mongoose.connection
